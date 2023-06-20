@@ -9,6 +9,9 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import setupRoutes from "./routes/index.js";
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./mocks.js";
 
 const run = async () => {
   // CONFIG + MIDDLEWARE
@@ -43,6 +46,10 @@ const run = async () => {
     const PORT = process.env.PORT || 5000;
     await mongoose.connect(process.env.MONGO_URL!);
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+
+    // MOCK DATA
+    User.insertMany(users);
+    Post.insertMany(posts);
   } catch (error) {
     console.log(error);
   }

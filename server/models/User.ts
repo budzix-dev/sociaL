@@ -1,6 +1,6 @@
 import { createSchema, Type, typedModel } from "ts-mongoose";
 
-const UserSchema = createSchema(
+const userSchema = createSchema(
   {
     email: Type.string({
       required: true,
@@ -32,5 +32,5 @@ const UserSchema = createSchema(
   { timestamps: true }
 );
 
-const User = typedModel("User", UserSchema);
+const User = typedModel("User", userSchema);
 export default User;
