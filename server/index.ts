@@ -8,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+import setupRoutes from "./routes/index.js";
 
 const run = async () => {
   // CONFIG + MIDDLEWARE
@@ -35,6 +36,8 @@ const run = async () => {
     },
   });
   const upload = multer({ storage });
+
+  setupRoutes(app, upload);
 
   try {
     const PORT = process.env.PORT || 5000;
