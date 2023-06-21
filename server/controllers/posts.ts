@@ -54,7 +54,7 @@ export const likePost: express.Handler = async (req, res) => {
     const post = await Post.findById(id);
     const currentUserIndex = post!.likedBy!.indexOf(userId);
 
-    if (currentUserIndex == -1) {
+    if (currentUserIndex > -1) {
       post!.likedBy!.splice(currentUserIndex, 1);
     } else {
       post!.likedBy!.push(userId);

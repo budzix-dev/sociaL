@@ -39,7 +39,7 @@ export const login: express.Handler = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       res.status(400).json({ msg: "User with this email does not exist." });
       return;
